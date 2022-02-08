@@ -11,7 +11,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     height: 100vh;
     background-color: rgb(53, 53, 53);
 }
@@ -24,7 +24,7 @@ button {
     background-color: rgb(107, 107, 107);
     display: flex;
     flex-direction: column;
-    width: 550px;
+    width: 490px;
     padding: 25px;
     gap: 20px;
     border-radius: 20px;
@@ -59,9 +59,10 @@ button {
 
 }
 
-.number, .operation{
+.number, .operation, .equals{
     font-size: 48px;
-    padding: 20px 40px;
+    width: 100px;
+    height: 100px;
     background-color: rgb(192, 192, 192);
     border-radius: 10px;
 }
@@ -77,12 +78,21 @@ button {
     margin: 10px;
 }
 
-.operation {
-    font-size: 48px;
-    padding: 20px 40px;
-    background-color: rgb(194, 194, 194);
-}
-
 .operation:hover {
     background-color: rgb(177, 176, 176);
+}
+
+.footer {
+    background-color: rgb(43, 43, 43);
+    align-self: stretch;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    font-size: 20px;
+    color: rgb(161, 161, 161);
+}
+
+.plus {
+    flex: 1;
 }
