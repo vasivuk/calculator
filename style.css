@@ -59,7 +59,7 @@ button {
 
 }
 
-.number, .operation, .equals{
+.number, .operation, .equals, .dot{
     font-size: 48px;
     width: 100px;
     height: 100px;
