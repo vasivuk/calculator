@@ -1,46 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=PT+Mono&family=Quantico&family=Teko:wght@300&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Open Sans', sans-serif;
+}
+
 body {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 100vh;
+    background-color: rgb(53, 53, 53);
+}
+
+button {
+    border-style: none;
 }
 
 .calculator {
-    background-color: rgb(163, 163, 163);
+    background-color: rgb(107, 107, 107);
     display: flex;
     flex-direction: column;
-    width: 450px;
+    width: 550px;
+    padding: 25px;
+    gap: 20px;
+    border-radius: 20px;
 }
 
 .screen {
     background-color: rgb(73, 95, 73);
     height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    font-size: 64px;
+    padding: 5px 20px;
+    border-radius: 10px;
+    /* font-family: 'PT Mono', monospace; */
+    font-family: 'Quantico', sans-serif;
+    /* font-family: 'Teko', sans-serif; */
 }
 
 .buttons-section {
     display: flex;
+    background-color: rgb(141, 141, 141);
+    border-radius: 10px;
+    padding: 10px;
 }
 
-.numbers-section {
+.numbers-section{
     display: flex;
-    background-color: rgb(221, 220, 220);
     flex-wrap: wrap;
+    gap: 15px;
+    margin: 10px;
 
 }
 
-.number {
+.number, .operation{
     font-size: 48px;
     padding: 20px 40px;
-    background-color: grey;
+    background-color: rgb(192, 192, 192);
+    border-radius: 10px;
+}
+
+.number:hover{
+    background-color: rgb(177, 176, 176);
 }
 
 .operations-section{
     display: flex;
     flex-direction: column;
+    gap: 15px;
+    margin: 10px;
 }
 
 .operation {
     font-size: 48px;
     padding: 20px 40px;
+    background-color: rgb(194, 194, 194);
+}
+
+.operation:hover {
+    background-color: rgb(177, 176, 176);
 }
