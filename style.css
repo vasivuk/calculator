@@ -16,10 +16,6 @@ body {
     background-color: rgb(53, 53, 53);
 }
 
-button {
-    border-style: none;
-}
-
 .calculator {
     background-color: rgb(107, 107, 107);
     display: flex;
@@ -59,7 +55,8 @@ button {
 
 }
 
-.number, .operation, .equals, .dot{
+button {
+    border-style: none;
     font-size: 48px;
     width: 100px;
     height: 100px;
@@ -67,7 +64,7 @@ button {
     border-radius: 10px;
 }
 
-.number:hover{
+button:hover {
     background-color: rgb(177, 176, 176);
 }
 
@@ -76,10 +73,6 @@ button {
     flex-direction: column;
     gap: 15px;
     margin: 10px;
-}
-
-.operation:hover {
-    background-color: rgb(177, 176, 176);
 }
 
 .footer {

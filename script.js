@@ -3,6 +3,7 @@ const screen = document.querySelector('.screen');
 const equals = document.querySelector('.equals');
 const operations = document.querySelectorAll('.operation');
 const dot = document.querySelector('.dot');
+const del = document.querySelector('.del');
 
 let Expression = {};
 let operationClicked = false;
@@ -19,6 +20,17 @@ for(const number of numbers){
         }
     })
 }
+//Clicking del
+del.addEventListener('click', () => {
+    if(screen.textContent.length === 1){
+        screen.textContent = 0;
+    } else {
+        if(screen.textContent.charAt(screen.textContent.length-1) === '.') {
+            dotClicked = false;
+        }
+        screen.textContent = screen.textContent.substring(0, screen.textContent.length-1);
+    }
+})
 
 //Clicking dot
 dot.addEventListener('click', () => {
