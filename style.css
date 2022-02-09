@@ -27,19 +27,21 @@ body {
     border-bottom: 15px solid var(--calculator-border); */
     display: flex;
     flex-direction: column;
-    width: 410px;
+    /* 2 pixels for border */
+    width: 412px;
     padding: 25px;
     gap: 30px;
     border-radius: 20px;
-    box-shadow: rgba(0, 0, 0, 0.5) 10px 10px 20px
-                ,rgba(173, 173, 173, 0.349) 5px 5px 20px inset;
+    box-shadow: rgba(0, 0, 0, 0.5) 10px 10px 10px
+                ,rgba(173, 173, 173, 0.356) 5px 5px 10px inset
+                ,rgba(0, 0, 0, 0.479) -10px -10px 10px inset;
     
 
 }
 
 .screen {
     background-color: rgb(73, 95, 73);
-    border: 5px solid rgb(46, 46, 46); 
+    border: 3px solid rgb(46, 46, 46); 
     box-shadow: rgba(34, 34, 34, 1) 3px 3px 6px inset;
     height: 80px;
     display: flex;
@@ -59,6 +61,7 @@ body {
     background-color: rgb(90, 90, 90);
     border-radius: 10px;
     padding: 10px;
+    border: 1px solid rgb(58, 58, 58);
 }
 
 .numbers-section{
