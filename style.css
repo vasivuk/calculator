@@ -10,6 +10,7 @@
     padding: 0;
     font-family: 'Open Sans', sans-serif;
     color: white;
+    user-select: none;
 }
 
 body {
@@ -78,6 +79,7 @@ body {
 
 button {
     border-style: none;
+    cursor: pointer;
     border-bottom: solid 2px var(--border);
     border-right: solid 2px var(--border);
     font-size: 36px;
