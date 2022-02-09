@@ -1,6 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=PT+Mono&family=Quantico&family=Teko:wght@300&display=swap');
 
+:root {
+    --border: #333;
+    --calculator-border: #222;
+}
 * {
     margin: 0;
     padding: 0;
@@ -19,6 +23,8 @@ body {
 
 .calculator {
     background-color: rgb(73, 73, 73);
+    /* border-right: 15px solid var(--calculator-border);
+    border-bottom: 15px solid var(--calculator-border); */
     display: flex;
     flex-direction: column;
     width: 410px;
@@ -27,6 +33,7 @@ body {
     border-radius: 20px;
     box-shadow: rgba(0, 0, 0, 0.5) 10px 10px 20px
                 ,rgba(173, 173, 173, 0.349) 5px 5px 20px inset;
+    
 
 }
 
@@ -68,6 +75,8 @@ body {
 
 button {
     border-style: none;
+    border-bottom: solid 2px var(--border);
+    border-right: solid 2px var(--border);
     font-size: 36px;
     width: 80px;
     height: 80px;
@@ -85,6 +94,7 @@ button:hover {
 
 button:active {
     transform: translate3d(0px, 2px, 0px);
+    box-shadow: rgba(0, 0, 0, 0.26) -5px -5px 10px inset;
 }
 
 .operations-section{
