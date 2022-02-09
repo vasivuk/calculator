@@ -33,7 +33,7 @@ body {
     padding: 25px;
     gap: 30px;
     border-radius: 20px;
-    box-shadow: rgba(0, 0, 0, 0.5) 10px 10px 10px
+    box-shadow: #0000006e 20px 20px 30px
                 ,rgba(173, 173, 173, 0.356) 5px 5px 10px inset
                 ,rgba(0, 0, 0, 0.479) -10px -10px 10px inset;
     
@@ -89,7 +89,8 @@ button {
     border-radius: 10px;
     transform: translate3d(0px, 0px, 0px);
     box-shadow: rgba(0, 0, 0, 0.288) 5px 5px 5px,
-                rgba(255, 255, 255, 0.26) 5px 5px 10px inset;
+                rgba(255, 255, 255, 0.349) 7px 7px 2px inset,
+                rgba(0, 0, 0, 0.349) -7px -7px 2px inset;
     /* box-shadow: rgba(0, 0, 0, 0.349) 5px 5px 5px; */
 }
 
@@ -99,7 +100,7 @@ button:hover {
 
 button:active {
     transform: translate3d(0px, 2px, 0px);
-    box-shadow: rgba(0, 0, 0, 0.26) -5px -5px 10px inset;
+    box-shadow: rgba(0, 0, 0, 0.349) -7px -7px 2px inset;
 }
 
 .operations-section{
