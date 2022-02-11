@@ -103,9 +103,11 @@ const clear = document.querySelector('#clear');
 clear.addEventListener('click', () => {
     if(currentOperation != null && currentOperation.classList.contains('clicked')){
         currentOperation.classList.remove('clicked');
-    }    screen.textContent = 0;
+    }    
+    screen.textContent = 0;
     dotClicked = false;
     operationClicked = false;
+    currentOperation = null;
     Expression = {};
 });
 
