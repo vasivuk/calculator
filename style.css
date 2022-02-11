@@ -98,7 +98,7 @@ button:hover {
     background-color: rgb(112, 112, 112);
 }
 
-button:active {
+button:active , .clicked{
     transform: translate3d(0px, 2px, 0px);
     box-shadow: rgba(0, 0, 0, 0.349) -7px -7px 2px inset;
 }

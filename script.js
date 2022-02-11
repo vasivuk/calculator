@@ -8,20 +8,27 @@ const del = document.querySelector('.del');
 let Expression = {};
 let operationClicked = false;
 let dotClicked = false;
+let currentOperation;
 
 //Clicking number
 for(const number of numbers){
     number.addEventListener('click', () => {
+        if(currentOperation != null && currentOperation.classList.contains('clicked')){
+            currentOperation.classList.remove('clicked');
+        }
         if(screen.textContent === '0' || operationClicked){
             screen.textContent = number.value;
-            operationClicked = false;
         } else {
             screen.textContent += number.value;
         }
+        operationClicked = false;
     })
 }
 //Clicking del
 del.addEventListener('click', () => {
+    if(currentOperation != null && currentOperation.classList.contains('clicked')){
+        currentOperation.classList.remove('clicked');
+    }
     if(screen.textContent.length === 1){
         screen.textContent = 0;
     } else {
@@ -35,6 +42,9 @@ del.addEventListener('click', () => {
 //Clicking dot
 dot.addEventListener('click', () => {
     if(!dotClicked){
+        if(currentOperation != null && currentOperation.classList.contains('clicked')){
+            currentOperation.classList.remove('clicked');
+        }
         if(operationClicked){
             screen.textContent = '0'+dot.value;
             operationClicked = false;
@@ -50,20 +60,32 @@ dot.addEventListener('click', () => {
 //Clicking operation
 for(const operation of operations) {
     operation.addEventListener('click', () => {
-        if(Expression.firstOperand != null) {
-            Expression.firstOperand += parseFloat(screen.textContent);
-            screen.textContent = Expression.firstOperand;
+        if(operationClicked){
+            Expression.operation = operation.value;
+            currentOperation.classList.remove('clicked');
         } else {
-            Expression.firstOperand = parseFloat(screen.textContent);
+            if(Expression.hasOwnProperty('operation') && Expression.operation !== null){
+                Expression.secondOperand = parseFloat(screen.textContent);
+                Expression.firstOperand = operate(Expression.operation, Expression.firstOperand, Expression.secondOperand);
+                Expression.secondOperand = null;
+                screen.textContent = Expression.firstOperand;
+                Expression.operation = operation.value;
+            } else {
+                Expression.firstOperand = parseFloat(screen.textContent);
+                Expression.operation = operation.value;
+            }
         }
-        Expression.operation = operation.value;
         operationClicked = true;
-        dotClicked = false;
+        currentOperation = operation;
+        currentOperation.classList.add('clicked');
     });
 }
 
 //Clicking equals
 equals.addEventListener('click', () => {
+    if(currentOperation != null && currentOperation.classList.contains('clicked')){
+        currentOperation.classList.remove('clicked');
+    }
     Expression.secondOperand = parseFloat(screen.textContent);
     if(!Expression.hasOwnProperty('operation')) {
         screen.textContent = "ERROR!";
@@ -79,7 +101,9 @@ equals.addEventListener('click', () => {
 //Clicking clear
 const clear = document.querySelector('#clear');
 clear.addEventListener('click', () => {
-    screen.textContent = 0;
+    if(currentOperation != null && currentOperation.classList.contains('clicked')){
+        currentOperation.classList.remove('clicked');
+    }    screen.textContent = 0;
     dotClicked = false;
     operationClicked = false;
     Expression = {};
