@@ -4,6 +4,7 @@
 :root {
     --border: #333;
     --calculator-border: #222;
+    --orange: rgb(211, 152, 43);
 }
 * {
     margin: 0;
@@ -31,13 +32,11 @@ body {
     /* 2 pixels for border */
     width: 412px;
     padding: 25px;
-    gap: 30px;
+    gap: 20px;
     border-radius: 20px;
     box-shadow: #0000006e 20px 20px 30px
                 ,rgba(173, 173, 173, 0.356) 5px 5px 10px inset
                 ,rgba(0, 0, 0, 0.479) -10px -10px 10px inset;
-    
-
 }
 
 .screen {
@@ -74,7 +73,7 @@ body {
 }
 
 #clear {
-    background-color: rgb(211, 152, 43);
+    background-color: var(--orange);
 }
 
 button {
@@ -124,3 +123,49 @@ button:active , .clicked{
 .plus {
     flex: 1;
 }
+
+/* On off switch */
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 3rem;
+    height: 1rem;
+    margin-left: 10px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgb(58, 58, 58);
+    box-shadow: rgba(0, 0, 0, 0.486) 0px 0px 10px inset;
+    border-radius: 30%;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    box-shadow: rgba(255, 255, 255, 0.185) 2px 2px 3px inset,   rgba(0, 0, 0, 0.171) -2px -2px 3px inset;
+    content: "";
+    height: 12px;
+    width: 24px;
+    border-radius: 30%;
+    left: 4px;
+    bottom: 2px;
+    background-color: rgb(156, 40, 40);
+    transition: .4s;
+  }
+  
+  input:checked + .slider:before {
+    transform: translateX(16px);
+  }

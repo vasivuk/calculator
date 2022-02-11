@@ -1,14 +1,24 @@
 const numbers = document.querySelectorAll('.number');
-const screen = document.querySelector('.screen');
 const equals = document.querySelector('.equals');
 const operations = document.querySelectorAll('.operation');
 const dot = document.querySelector('.dot');
 const del = document.querySelector('.del');
+const screen = document.querySelector('.screen');
+const clear = document.querySelector('#clear');
+const onOffSwitch = document.querySelector('.on-off');
 
 let Expression = {};
 let operationClicked = false;
 let dotClicked = false;
 let currentOperation;
+
+onOffSwitch.addEventListener('change', () => {
+    if(onOffSwitch.checked) {
+        screen.textContent = "0";
+    } else {
+        screen.textContent = "";
+    }
+});
 
 //Clicking number
 for(const number of numbers){
@@ -99,7 +109,6 @@ equals.addEventListener('click', () => {
 })
 
 //Clicking clear
-const clear = document.querySelector('#clear');
 clear.addEventListener('click', () => {
     if(currentOperation != null && currentOperation.classList.contains('clicked')){
         currentOperation.classList.remove('clicked');
