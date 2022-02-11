@@ -6,6 +6,7 @@
     --calculator-border: #222;
     --orange: rgb(211, 152, 43);
 }
+
 * {
     margin: 0;
     padding: 0;
@@ -37,6 +38,12 @@ body {
     box-shadow: #0000006e 20px 20px 30px
                 ,rgba(173, 173, 173, 0.356) 5px 5px 10px inset
                 ,rgba(0, 0, 0, 0.479) -10px -10px 10px inset;
+}
+
+@media (max-width: 450px) {
+    .calculator {
+        transform: scale(0.8);
+    }    
 }
 
 .screen {
@@ -90,7 +97,6 @@ button {
     box-shadow: rgba(0, 0, 0, 0.288) 5px 5px 5px,
                 rgba(255, 255, 255, 0.349) 7px 7px 2px inset,
                 rgba(0, 0, 0, 0.349) -7px -7px 2px inset;
-    /* box-shadow: rgba(0, 0, 0, 0.349) 5px 5px 5px; */
 }
 
 button:hover {
@@ -126,12 +132,18 @@ button:active , .clicked{
 
 /* On off switch */
 
+.switch-section {
+    display: flex;
+    margin-left: 5px;
+    gap: 6px;
+}
+
 .switch {
     position: relative;
     display: inline-block;
     width: 3rem;
     height: 1rem;
-    margin-left: 10px;
+    margin-left: 0px;
 }
 
 .switch input {
@@ -162,10 +174,15 @@ button:active , .clicked{
     border-radius: 30%;
     left: 4px;
     bottom: 2px;
-    background-color: rgb(156, 40, 40);
+    background-color: rgb(65, 40, 156);
     transition: .4s;
   }
   
   input:checked + .slider:before {
     transform: translateX(16px);
   }
+
+.switch-section p {
+    font-size: 12px;
+    color: rgb(155, 155, 155);
+}
