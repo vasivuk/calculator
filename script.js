@@ -11,47 +11,54 @@ let Expression = {};
 let operationClicked = false;
 let dotClicked = false;
 let currentOperation;
+let isOn = false;
 
 onOffSwitch.addEventListener('change', () => {
     if(onOffSwitch.checked) {
         screen.textContent = "0";
+        isOn = true;
     } else {
         screen.textContent = "";
+        isOn = false;
     }
 });
 
 //Clicking number
 for(const number of numbers){
     number.addEventListener('click', () => {
-        if(currentOperation != null && currentOperation.classList.contains('clicked')){
-            currentOperation.classList.remove('clicked');
+        if(isOn){
+            if(currentOperation != null && currentOperation.classList.contains('clicked')){
+                currentOperation.classList.remove('clicked');
+            }
+            if(screen.textContent === '0' || operationClicked){
+                screen.textContent = number.value;
+            } else {
+                screen.textContent += number.value;
+            }
+            operationClicked = false;
         }
-        if(screen.textContent === '0' || operationClicked){
-            screen.textContent = number.value;
-        } else {
-            screen.textContent += number.value;
-        }
-        operationClicked = false;
     })
 }
 //Clicking del
 del.addEventListener('click', () => {
-    if(currentOperation != null && currentOperation.classList.contains('clicked')){
-        currentOperation.classList.remove('clicked');
-    }
-    if(screen.textContent.length === 1){
-        screen.textContent = 0;
-    } else {
-        if(screen.textContent.charAt(screen.textContent.length-1) === '.') {
-            dotClicked = false;
+    if(isOn){
+        if(currentOperation != null && currentOperation.classList.contains('clicked')){
+            currentOperation.classList.remove('clicked');
         }
-        screen.textContent = screen.textContent.substring(0, screen.textContent.length-1);
+        if(screen.textContent.length === 1){
+            screen.textContent = 0;
+        } else {
+            if(screen.textContent.charAt(screen.textContent.length-1) === '.') {
+                dotClicked = false;
+            }
+            screen.textContent = screen.textContent.substring(0, screen.textContent.length-1);
+        }
     }
 })
 
 //Clicking dot
 dot.addEventListener('click', () => {
-    if(!dotClicked){
+    if(isOn && !dotClicked){
         if(currentOperation != null && currentOperation.classList.contains('clicked')){
             currentOperation.classList.remove('clicked');
         }
@@ -70,54 +77,60 @@ dot.addEventListener('click', () => {
 //Clicking operation
 for(const operation of operations) {
     operation.addEventListener('click', () => {
-        if(operationClicked){
-            Expression.operation = operation.value;
-            currentOperation.classList.remove('clicked');
-        } else {
-            if(Expression.hasOwnProperty('operation') && Expression.operation !== null){
-                Expression.secondOperand = parseFloat(screen.textContent);
-                Expression.firstOperand = operate(Expression.operation, Expression.firstOperand, Expression.secondOperand);
-                Expression.secondOperand = null;
-                screen.textContent = Expression.firstOperand;
+        if(isOn){
+            if(operationClicked){
                 Expression.operation = operation.value;
+                currentOperation.classList.remove('clicked');
             } else {
-                Expression.firstOperand = parseFloat(screen.textContent);
-                Expression.operation = operation.value;
+                if(Expression.hasOwnProperty('operation') && Expression.operation !== null){
+                    Expression.secondOperand = parseFloat(screen.textContent);
+                    Expression.firstOperand = operate(Expression.operation, Expression.firstOperand, Expression.secondOperand);
+                    Expression.secondOperand = null;
+                    screen.textContent = Expression.firstOperand;
+                    Expression.operation = operation.value;
+                } else {
+                    Expression.firstOperand = parseFloat(screen.textContent);
+                    Expression.operation = operation.value;
+                }
             }
+            operationClicked = true;
+            currentOperation = operation;
+            currentOperation.classList.add('clicked');
         }
-        operationClicked = true;
-        currentOperation = operation;
-        currentOperation.classList.add('clicked');
     });
 }
 
 //Clicking equals
 equals.addEventListener('click', () => {
-    if(currentOperation != null && currentOperation.classList.contains('clicked')){
-        currentOperation.classList.remove('clicked');
+    if(isOn){
+        if(currentOperation != null && currentOperation.classList.contains('clicked')){
+            currentOperation.classList.remove('clicked');
+        }
+        Expression.secondOperand = parseFloat(screen.textContent);
+        if(!Expression.hasOwnProperty('operation')) {
+            screen.textContent = "ERROR!";
+            return;
+        }
+        let result = operate(Expression.operation, Expression.firstOperand, Expression.secondOperand);
+        screen.textContent = result;
+        operationClicked = true;
+        dotClicked = false;
+        Expression = {};
     }
-    Expression.secondOperand = parseFloat(screen.textContent);
-    if(!Expression.hasOwnProperty('operation')) {
-        screen.textContent = "ERROR!";
-        return;
-    }
-    let result = operate(Expression.operation, Expression.firstOperand, Expression.secondOperand);
-    screen.textContent = result;
-    operationClicked = true;
-    dotClicked = false;
-    Expression = {};
 })
 
 //Clicking clear
 clear.addEventListener('click', () => {
-    if(currentOperation != null && currentOperation.classList.contains('clicked')){
-        currentOperation.classList.remove('clicked');
-    }    
-    screen.textContent = 0;
-    dotClicked = false;
-    operationClicked = false;
-    currentOperation = null;
-    Expression = {};
+    if(isOn){
+        if(currentOperation != null && currentOperation.classList.contains('clicked')){
+            currentOperation.classList.remove('clicked');
+        }    
+        screen.textContent = 0;
+        dotClicked = false;
+        operationClicked = false;
+        currentOperation = null;
+        Expression = {};
+    }
 });
 
 function add(num1, num2){
