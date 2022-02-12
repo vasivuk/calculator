@@ -111,11 +111,11 @@ equals.addEventListener('click', () => {
             screen.textContent = "ERROR!";
             return;
         }
-        let result = operate(Expression.operation, Expression.firstOperand, Expression.secondOperand);
-        screen.textContent = result;
+        Expression.firstOperand = operate(Expression.operation, Expression.firstOperand, Expression.secondOperand);
+        screen.textContent = Expression.firstOperand;
         operationClicked = true;
+        Expression.operation = null;
         dotClicked = false;
-        Expression = {};
     }
 })
 
@@ -163,5 +163,6 @@ function operate(operator, num1, num2){
         case '*': return multiply(num1, num2);
         case '/': return divide(num1, num2);
         case '%': return mod(num1, num2);
+        default: return 0;
     }
 }
